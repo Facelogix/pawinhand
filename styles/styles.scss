@@ -1,0 +1,109 @@
+/* 페이지 번호 활성화, 비활성화, 배경색 , 글자색  */
+//변수
+// ------------- 색상
+$bg1-light:#eee; //header,card,q&a 배경
+$bg3-dark:#222; //bnr,btn,footer 배경
+$font-color1-bk:#000; //
+$font-color2-wh:#fff; //
+$page-disable:#ccc; //페이지번호 비활성화 
+$page-active:#fff; //페이지번호 활성화
+//------------- 여백
+$pd50:50px 0;
+// 재사용 규칙(mixins) 선언과 호출
+// @mixin 생성규칙명
+// @include 호출규칙명
+@mixin layout { //컨텐츠 크기+가운데정렬
+    width:1200px; margin:0 auto;
+}
+@mixin flex-row-between {
+    display: flex; flex-flow: row nowrap;
+    justify-content: space-between; align-items:center;
+}
+@mixin flex-clumn-between {
+    display: flex; flex-flow: column wrap;
+    justify-content: space-between; align-items: flex-start;
+}
+// 실행
+#header_bg {
+    background-color: $bg1-light;
+    
+    header {
+        @include layout;
+        @include flex-row-between; height:70px;
+        background: aqua; 
+        h1 {a{img{}}}
+        nav {
+            background-color: antiquewhite;
+            
+            a {
+                margin-left: 16px;
+            }
+            a:first-child {margin-left: 0;}
+        }//e: nav
+    }//e: header
+}//e: header_bg
+#slide_wrap {position: relative;
+    @include layout;
+    .slide_container {
+        .slide {display: none;}
+        .slide1 {display: block;}
+        .slide2 {}
+        .slide3 {}
+        .slide4 {}
+    }//e:slide_container
+    .prev, .next {position: absolute;}
+    .prev {top:45%; left:1%;}
+    .next {top:45%; right:1%;}
+    .pagenation { /* background-color: brown; */ text-align: center;
+        position: absolute; bottom: 5%; left:0; width: 100%;
+        a {
+            background-color: $page-disable; 
+            text-indent: -9999px; 
+            display: inline-block; 
+            border-radius: 50%;
+            width: 16px; 
+            margin-right: 16px;
+        }
+        a.active {background-color: $page-active;}
+        a:last-child {margin: 0;}
+    }
+}//e:slide_wrap
+#gallery_wrap {/* background-color: cadetblue; */
+    @include flex-row-between;
+    @include layout;
+    padding: $pd50;
+    .gallery {
+        width: 100px; height: 100%;
+        img {width: 100%;}
+    }
+    .g5 {
+        width: 200px; height: 200px;
+    }
+}//e:#galler_wrap
+#bnr_wrap {background-color: $bg3-dark; text-align: center; padding:$pd50;
+    span {
+        color: $font-color2-wh;
+        /* font-size: ; */
+    }
+}//e:#bnr_wrap
+#card_wrap {
+    padding: $pd50;
+    @include layout;
+    @include flex-row-between;
+    .card {background-color:$bg1-light;
+        width: 20%;
+        @include flex-clumn-between;
+        
+        
+        .photo {
+            
+            img {width: 100%;}
+        }
+        h2 {padding: 20px;}
+        p {padding: 20px;}
+    }
+    .card1 {}
+    .card2 {}
+    .card3 {}
+    .card4 {}
+}
