@@ -13,13 +13,15 @@ $pd50:50px 0;
 // @mixin 생성규칙명
 // @include 호출규칙명
 @mixin layout { //컨텐츠 크기+가운데정렬
-    width:1200px; margin:0 auto;
+    width:calc(100% - 30px); margin:0 auto; overflow-x: hidden;
+    max-width: 1200px;
+    min-width: 320px;
 }
 @mixin flex-row-between {
     display: flex; flex-flow: row nowrap;
     justify-content: space-between; align-items:center;
 }
-@mixin flex-clumn-between {
+@mixin flex-column-between {
     display: flex; flex-flow: column wrap;
     justify-content: space-between; align-items: flex-start;
 }
@@ -30,7 +32,7 @@ $pd50:50px 0;
     header {
         @include layout;
         @include flex-row-between; height:70px;
-        background: aqua; 
+        /* background: aqua; */ 
         h1 {a{img{}}}
         nav {
             background-color: antiquewhite;
@@ -91,19 +93,56 @@ $pd50:50px 0;
     @include layout;
     @include flex-row-between;
     .card {background-color:$bg1-light;
-        width: 20%;
-        @include flex-clumn-between;
+        width: 23.5%; padding: 30px 20px;
+        @include flex-column-between;
         
         
         .photo {
             
             img {width: 100%;}
         }
-        h2 {padding: 20px;}
-        p {padding: 20px;}
+        * {padding-bottom: 20px; line-height: 1.3;}
+        h2 {}
+        p:last-child {padding: 0;}
     }
-    .card1 {}
-    .card2 {}
-    .card3 {}
-    .card4 {}
-}
+}//e:#card_wrap
+#qa_wrap {
+    @include layout;
+    
+    h2 {padding-bottom: 0;}
+    #qaFrm {width: 100%; padding:0 0 20px;
+        fieldset {
+            @include flex-column-between;
+            input, #user_qa {background-color:$bg1-light;}
+            input[name$=id] {}
+            input[name$=number] {}
+            input::placeholder {padding-left: 10px;}
+            #user_qa {
+                padding-bottom:70px;
+            }
+            * {
+                padding:10px 0; margin-top: 20px; width: 100%;
+                border:none;
+            }
+            #user_qa::placeholder {padding-left: 10px;}
+            #qa_btn {background-color: $bg3-dark; 
+            padding:20px; color:$font-color2-wh
+            }
+            
+        }
+    }
+}//e:qa_wrap
+footer {
+    background-color: $bg3-dark; text-align: center;
+    p {
+        color:$font-color2-wh; padding: $pd50;
+    }
+}//e:footer
+
+//media quree
+/* @media screen and (max-width:1024px) {
+    #header_bg {
+        header {background-color: brown;}
+    }
+} */
+
