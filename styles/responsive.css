@@ -11,5 +11,5 @@
     #gallery_wrap .g2, #gallery_wrap .g3,
     #gallery_wrap .g8, #gallery_wrap .g7 {display: none;}
     #card_wrap .card2, #card_wrap .card1  {display: none;}
-    #card_wrap .card2, #card_wrap .card3 {width: 70%; }
+    #card_wrap .card2, #card_wrap .card3 {width: 100%; }
 }
